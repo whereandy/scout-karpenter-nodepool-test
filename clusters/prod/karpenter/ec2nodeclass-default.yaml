@@ -1,0 +1,17 @@
+apiVersion: karpenter.k8s.aws/v1
+kind: EC2NodeClass
+metadata:
+  name: default
+spec:
+  amiFamily: AL2023
+  role: KarpenterNodeRole-scout-karpenter-test
+  subnetSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: scout-karpenter-test
+  securityGroupSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: scout-karpenter-test
+  tags:
+    karpenter.sh/discovery: scout-karpenter-test
+    Environment: production
+    Team: platform
